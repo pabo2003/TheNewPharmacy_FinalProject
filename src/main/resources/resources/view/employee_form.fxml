@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="698.0" prefWidth="1108.0" style="-fx-background-color: #75E6DA;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse.Controller.EmployeeFormController">
+    <children>
+        <Label layoutX="160.0" layoutY="20.0" text="Employee Manage" textFill="#040c14">
+            <font>
+                <Font name="System Bold Italic" size="36.0" />
+            </font>
+        </Label>
+        <TextField fx:id="txtName" layoutX="713.0" layoutY="102.0" onAction="#txtSearchOnAction" onKeyReleased="#txtEmployeeNameOnKeyReleased" prefHeight="33.0" prefWidth="230.0" promptText="Enter Employee's Name" />
+        <JFXButton fx:id="btnDelete" buttonType="RAISED" contentDisplay="RIGHT" layoutX="13.0" layoutY="472.0" onAction="#btnDeleteOnAction" prefHeight="40.0" prefWidth="181.0" style="-fx-background-color: #189AB4;" text="Delete" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+            <graphic>
+                <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../asserts.icon/Delete.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+        <TextField fx:id="txtNICNo" layoutX="713.0" layoutY="143.0" onKeyReleased="#txtEmployeeNICOnKeyReleased" prefHeight="33.0" prefWidth="230.0" promptText="Enter Employee's NIC No" />
+        <TextField fx:id="txtAddress" layoutX="713.0" layoutY="182.0" prefHeight="33.0" prefWidth="230.0" promptText="Enter Employee's Address" />
+        <Label layoutX="503.0" layoutY="70.0" text="Employee Id:" textFill="#363232">
+            <font>
+                <Font name="System Bold Italic" size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="503.0" layoutY="108.0" text="Employee Name:" textFill="#363232">
+            <font>
+                <Font name="System Bold Italic" size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="503.0" layoutY="188.0" text="Employee Address:" textFill="#363232">
+            <font>
+                <Font name="System Bold Italic" size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="503.0" layoutY="229.0" text="Employee Tel:" textFill="#363232">
+            <font>
+                <Font name="System Bold Italic" size="18.0" />
+            </font>
+        </Label>
+        <TextField fx:id="txtTel" layoutX="713.0" layoutY="223.0" onKeyReleased="#txtEmployeeTelOnKeyReleased" prefHeight="33.0" prefWidth="230.0" promptText="Enter Employee's Tel" />
+        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../asserts.icon/customer.png" />
+            </image>
+        </ImageView>
+        <TableView fx:id="tblEmployee" layoutX="206.0" layoutY="310.0" prefHeight="389.0" prefWidth="904.0">
+            <columns>
+                <TableColumn fx:id="colId" prefWidth="94.0" text="Id" />
+                <TableColumn fx:id="colName" prefWidth="138.0" text="Name" />
+                <TableColumn fx:id="colNICNo" prefWidth="167.0" text="NIC No" />
+                <TableColumn fx:id="colAddress" prefWidth="194.0" text="Address" />
+                <TableColumn fx:id="colTel" prefWidth="146.0" text="Tel" />
+            <TableColumn fx:id="colSalary" prefWidth="164.0" text="Salary" />
+            </columns>
+        </TableView>
+        <JFXButton fx:id="btnClear" buttonType="RAISED" contentDisplay="RIGHT" layoutX="13.0" layoutY="542.0" onAction="#btnClearOnAction" prefHeight="40.0" prefWidth="181.0" style="-fx-background-color: #189AB4;" text="Clear" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+            <graphic>
+                <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../asserts.icon/clean.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+        <JFXButton fx:id="btnDashboard" buttonType="RAISED" contentDisplay="RIGHT" layoutX="14.0" layoutY="609.0" onAction="#btnDashBoardOnAction" prefHeight="40.0" prefWidth="181.0" style="-fx-background-color: #189AB4;" text="Dashboard" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+            <graphic>
+                <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../asserts.icon/dashboard.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+        <JFXButton fx:id="btnSave" buttonType="RAISED" contentDisplay="RIGHT" layoutX="11.0" layoutY="334.0" onAction="#btnSaveOnAction" prefHeight="40.0" prefWidth="181.0" style="-fx-background-color: #189AB4;" text="Save" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+            <graphic>
+                <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../asserts.icon/save.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+        <JFXButton fx:id="btnUpdate" buttonType="RAISED" contentDisplay="RIGHT" layoutX="12.0" layoutY="403.0" onAction="#btnUpdateOnAction" prefHeight="40.0" prefWidth="181.0" style="-fx-background-color: #189AB4;" text="Update" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+            <graphic>
+                <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../asserts.icon/update.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+        <Label layoutX="503.0" layoutY="149.0" text="Employee NIC No:" textFill="#363232">
+            <font>
+                <Font name="System Bold Italic" size="18.0" />
+            </font>
+        </Label>
+        <TextField fx:id="txtId" layoutX="713.0" layoutY="64.0" onKeyReleased="#txtEmployeeIDOnKeyReleased" prefHeight="33.0" prefWidth="230.0" promptText="Enter Employee Id" />
+      <TextField fx:id="txtSalary" layoutX="713.0" layoutY="264.0" onKeyReleased="#txtEmployeeSalaryOnKeyReleased" prefHeight="33.0" prefWidth="230.0" promptText="Enter Employee's Salary" />
+      <Label layoutX="503.0" layoutY="270.0" text="Employee Salary:" textFill="#363232">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+    </children>
+</AnchorPane>

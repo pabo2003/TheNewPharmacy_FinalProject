@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse.Controller.DashboardFormController">
+    <children>
+        <ImageView fitHeight="835.0" fitWidth="1412.0" layoutX="-112.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../asserts.icon/OrderPlasmentBackground.png" />
+            </image>
+        </ImageView>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#189ab4" height="613.0" layoutX="-4.0" layoutY="187.0" opacity="0.82" stroke="BLACK" strokeType="INSIDE" width="196.0" />
+        <JFXButton fx:id="btnEmployee" layoutX="19.0" layoutY="273.0" mnemonicParsing="false" onAction="#btnEmployeeOnAction" prefHeight="42.0" prefWidth="149.0" style="-fx-background-color: Transparent;" text="Manage Employees" />
+        <JFXButton fx:id="btnItems" layoutX="19.0" layoutY="340.0" mnemonicParsing="false" onAction="#btnItemsOnAction" prefHeight="42.0" prefWidth="149.0" style="-fx-background-color: Transparent;" text="Manage Items" />
+        <JFXButton fx:id="btnStock" layoutX="20.0" layoutY="412.0" mnemonicParsing="false" onAction="#btnStockOnAction" prefHeight="42.0" prefWidth="149.0" style="-fx-background-color: Transparent;" text="Manage Stocks" />
+        <Text fill="#d9dbee" layoutX="197.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The New Pharmacy ">
+            <font>
+                <Font name="System Bold Italic" size="36.0" />
+            </font>
+        </Text>
+        <ImageView fitHeight="190.0" fitWidth="252.0" layoutX="1.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../asserts.icon/1643801015-35-the-new-pharmacy.jpg" />
+            </image>
+        </ImageView>
+        <AnchorPane layoutX="63.0" layoutY="58.0" prefHeight="68.0" prefWidth="66.0" style="-fx-background-color: #FFFFFF;" />
+        <Text fill="#d9dbee" layoutX="562.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DashBoard">
+            <font>
+                <Font name="System Bold Italic" size="36.0" />
+            </font>
+        </Text>
+        <JFXButton fx:id="btnCustomer" layoutX="20.0" layoutY="211.0" mnemonicParsing="false" onAction="#btnCustomerOnAction" prefHeight="42.0" prefWidth="149.0" style="-fx-background-color: Transparent;" text="Manage Customers" />
+        <JFXButton fx:id="btnSupplier" layoutX="19.0" layoutY="548.0" mnemonicParsing="false" onAction="#btnSupplierOAction" prefHeight="42.0" prefWidth="149.0" style="-fx-background-color: Transparent;" text="Manage Suppliers" />
+        <JFXButton fx:id="btnPlaceOrder" layoutX="20.0" layoutY="620.0" mnemonicParsing="false" onAction="#btnPlaceOrderOnAction" prefHeight="42.0" prefWidth="149.0" style="-fx-background-color: Transparent;" text="Place Orders" />
+        <JFXButton fx:id="btnSignOut" layoutX="20.0" layoutY="698.0" mnemonicParsing="false" onAction="#btnSignOutOnAction" prefHeight="42.0" prefWidth="149.0" style="-fx-background-color: Transparent;" text="Sign Out" />
+      <AnchorPane fx:id="SpecialPane" layoutX="191.0" layoutY="101.0" prefHeight="698.0" prefWidth="1108.0" style="-fx-background-color: #75E6DA;">
+         <children>
+            <ImageView fitHeight="544.0" fitWidth="903.0" layoutX="-1.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../asserts.icon/RegistrationBackground.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="558.0" fitWidth="871.0" layoutX="264.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../asserts.icon/supplierBackground.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+      <JFXButton fx:id="btnSupplierDetails" layoutY="482.0" mnemonicParsing="false" onAction="#btnSupplierDetailsOAction" prefHeight="42.0" prefWidth="184.0" style="-fx-background-color: Transparent;" text="Manage Supplier Details" />
+    </children>
+</AnchorPane>

@@ -1,0 +1,32 @@
+.backgroundColour1 {
+    -fx-background-color: linear-gradient(to left, #0c2461, #1e3799, #4a69bd);
+}
+
+.backgroundColour2 {
+    -fx-background-color: linear-gradient(to left, #0a3d62, #38ada9, #3c6382);
+}
+
+.backgroundColour3 {
+    -fx-background-color: linear-gradient(to left, #30336b, #130f40, #3B3B98);
+}
+
+.backgroundColour4 {
+    -fx-background-color: linear-gradient(to left, #ec7063, #f7dc6f, #a569bd);
+}
+
+/* Add more background colors here */
+.backgroundColour5 {
+    -fx-background-color: linear-gradient(to left, #e74c3c, #f39c12, #16a085);
+}
+
+.backgroundColour6 {
+    -fx-background-color: linear-gradient(to left, #1abc9c, #3498db, #f1c40f);
+}
+.background-pane {
+    -fx-background-image: url('/asserts.icon/img.png');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+}
+
+
+/* Add more background colors as needed */
