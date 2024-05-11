@@ -5,18 +5,24 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class Launcher extends Application {
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
-        stage.setScene(new Scene(FXMLLoader
-                .load(this.getClass().getResource("/view/login_form.fxml"))));
-        stage.setTitle("Login Form");
-      stage.centerOnScreen();
-        stage.show();
-
+    public void start(Stage stage) {
+        try {
+            Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/view/login_form.fxml")));
+            stage.setScene(scene);
+            stage.setTitle("Login Form");
+            stage.centerOnScreen();
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading FXML: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }

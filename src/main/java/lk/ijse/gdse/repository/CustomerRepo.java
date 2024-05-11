@@ -103,4 +103,17 @@ public class CustomerRepo {
         }
         return cusList;
     }
+
+    public static String getCurrentId() throws SQLException {
+        String sql = "SELECT cuId FROM customer ORDER BY cuId DESC LIMIT 1";
+        PreparedStatement pstm = DbConnection.getInstance().getConnection()
+                .prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+        if(resultSet.next()) {
+            String customerId = resultSet.getString(1);
+            return customerId;
+        }
+        return null;
+    }
 }

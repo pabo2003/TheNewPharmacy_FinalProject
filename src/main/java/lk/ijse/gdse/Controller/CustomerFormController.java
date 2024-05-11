@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import lk.ijse.gdse.Util.Regex;
 import lk.ijse.gdse.model.Customer;
 import lk.ijse.gdse.repository.CustomerRepo;
+import lk.ijse.gdse.repository.OrderRepo;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -68,6 +69,7 @@ public class CustomerFormController {
     public void initialize(){
         setCellValueFactory();
         loadAllCustomers();
+        getCurrentCustomerId();
 
         txtId.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
@@ -101,6 +103,25 @@ public class CustomerFormController {
                 txtTel.setText(newSelection.getTel());
             }
         });
+    }
+
+    private void getCurrentCustomerId() {
+        try {
+            String currentId = CustomerRepo.getCurrentId();
+            String nextOrderId = generateNextOrderId(currentId);
+            txtId.setText(nextOrderId);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String generateNextOrderId(String currentId) {
+        if (currentId != null && currentId.startsWith("C")) {
+            int idNum = Integer.parseInt(currentId.substring(3)) + 1;
+            return "C" + String.format("%03d", idNum);
+        }
+        return "C001";
     }
 
     private void loadAllCustomers() {

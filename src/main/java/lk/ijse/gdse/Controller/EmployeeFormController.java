@@ -15,6 +15,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import lk.ijse.gdse.Util.Regex;
 import lk.ijse.gdse.model.Employee;
+import lk.ijse.gdse.repository.CustomerRepo;
 import lk.ijse.gdse.repository.EmployeeRepo;
 
 import java.io.IOException;
@@ -86,6 +87,7 @@ public class EmployeeFormController {
     public void initialize() {
        setCellValueFactory();
        loadAllEmployee();
+       getCurrentEmployeeId();
 
         txtId.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
@@ -125,6 +127,25 @@ public class EmployeeFormController {
                 txtSalary.setText(String.valueOf(newSelection.getSalary()));
             }
         });
+    }
+
+    private void getCurrentEmployeeId() {
+        try {
+            String currentId = EmployeeRepo.getCurrentId();
+            String nextOrderId = generateNextOrderId(currentId);
+            txtId.setText(nextOrderId);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String generateNextOrderId(String currentId) {
+        if (currentId != null && currentId.startsWith("E")) {
+            int idNum = Integer.parseInt(currentId.substring(3)) + 1;
+            return "E" + String.format("%03d", idNum);
+        }
+        return "E001";
     }
 
     private void loadAllEmployee() {

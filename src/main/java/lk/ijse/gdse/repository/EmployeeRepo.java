@@ -80,12 +80,12 @@ public class EmployeeRepo {
 
         ResultSet resultSet = pstm.executeQuery();
         if (resultSet.next()) {
-            String employeeId = resultSet.getString("employeeId");
-            String name = resultSet.getString("name");
-            String address = resultSet.getString("address");
-            String nicNo = resultSet.getString("nicNo");
-            String tel1 = resultSet.getString("tel");
-            double salary = resultSet.getDouble("salary");
+            String tel1 = resultSet.getString(1);
+            String employeeId = resultSet.getString(2);
+            String name = resultSet.getString(3);
+            String address = resultSet.getString(4);
+            String nicNo = resultSet.getString(5);
+            double salary = resultSet.getDouble(6);
 
 
             Employee employee = new Employee(employeeId, name, address, nicNo, tel1, salary);
@@ -106,5 +106,18 @@ public class EmployeeRepo {
             employeeList.add(tel);
         }
         return employeeList;
+    }
+
+    public static String getCurrentId() throws SQLException {
+        String sql = "SELECT employeeId FROM Employee ORDER BY employeeId DESC LIMIT 1";
+        PreparedStatement pstm = DbConnection.getInstance().getConnection()
+                .prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+        if(resultSet.next()) {
+            String employeeId = resultSet.getString(1);
+            return employeeId;
+        }
+        return null;
     }
 }
