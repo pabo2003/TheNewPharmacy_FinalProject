@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -21,6 +22,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class LoginFormController {
     @FXML
@@ -28,6 +30,9 @@ public class LoginFormController {
 
     @FXML
     private Hyperlink linkRegister;
+
+    @FXML
+    private Label lblDate;
 
     @FXML
     private AnchorPane rootNode;
@@ -40,7 +45,13 @@ public class LoginFormController {
 
     @FXML
     public void initialize() {
+        setDate();
         txtUserId.setOnKeyPressed(this::handleEnterKeyPressed);
+    }
+
+    private void setDate() {
+        LocalDate now = LocalDate.now();
+        lblDate.setText(String.valueOf(now));
     }
 
     private void handleEnterKeyPressed(KeyEvent event) {
