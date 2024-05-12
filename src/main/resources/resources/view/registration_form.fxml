@@ -8,31 +8,45 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="root" prefHeight="800.0" prefWidth="1200.0" styleClass="backgroundColour2" stylesheets="@../css/Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.gdse.Controller.RegistrationFormController">
     <children>
-        <Label layoutX="110.0" layoutY="62.0" text="Registration Form" textFill="#040e11">
+      <ImageView fitHeight="849.0" fitWidth="1506.0" layoutX="-174.0" layoutY="-33.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../asserts.icon/ItemBackground.png" />
+         </image>
+      </ImageView>
+      <Ellipse fill="#f4f6f8" layoutX="691.0" layoutY="439.0" opacity="0.67" radiusX="470.0" radiusY="336.0" stroke="#fffafa" strokeType="INSIDE" />
+        <Label layoutX="261.0" layoutY="-13.0" text="Registration Form" textFill="#0c181b">
             <font>
                 <Font name="System Bold Italic" size="36.0" />
             </font>
+         <graphic>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../asserts.icon/register.png" />
+               </image>
+            </ImageView>
+         </graphic>
         </Label>
-        <TextField fx:id="txtUserId" layoutX="204.0" layoutY="292.0" onKeyReleased="#txtUserIdOnKeyReleased" prefHeight="34.0" prefWidth="331.0" promptText="Input your user id here" />
-        <TextField fx:id="txtPw" layoutX="204.0" layoutY="426.0" prefHeight="34.0" prefWidth="331.0" promptText="Input your password here" />
-        <TextField fx:id="txtName" layoutX="204.0" layoutY="358.0" prefHeight="34.0" prefWidth="331.0" promptText="Input your name here" />
-        <Label layoutX="67.0" layoutY="298.0" text="User ID:">
+        <TextField fx:id="txtUserId" layoutX="579.0" layoutY="276.0" onKeyReleased="#txtUserIdOnKeyReleased" prefHeight="34.0" prefWidth="331.0" promptText="Input your user id here" />
+        <TextField fx:id="txtPw" layoutX="579.0" layoutY="427.0" prefHeight="34.0" prefWidth="331.0" promptText="Input your password here" />
+        <TextField fx:id="txtName" layoutX="579.0" layoutY="353.0" prefHeight="34.0" prefWidth="331.0" promptText="Input your name here" />
+        <Label layoutX="403.0" layoutY="282.0" text="User ID:">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font></Label>
-        <Label layoutX="67.0" layoutY="364.0" text="Name:">
+        <Label layoutX="403.0" layoutY="359.0" text="Name:">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font></Label>
-        <Label layoutX="67.0" layoutY="432.0" text="Password:">
+        <Label layoutX="403.0" layoutY="433.0" text="Password:">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font></Label>
-        <JFXButton fx:id="btnRegister" buttonType="RAISED" layoutX="208.0" layoutY="598.0" onAction="#btnRegisterOnAction" prefHeight="44.0" prefWidth="172.0" style="-fx-background-color: #189AB4;" text="Register Now" textFill="WHITE">
+        <JFXButton fx:id="btnRegister" buttonType="RAISED" layoutX="605.0" layoutY="520.0" onAction="#btnRegisterOnAction" prefHeight="44.0" prefWidth="172.0" style="-fx-background-color: #189AB4;" text="Register Now" textFill="WHITE">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
@@ -40,29 +54,14 @@
                 <Font name="System Bold" size="16.0" />
             </font>
         </JFXButton>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../asserts.icon/register.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="24.0" layoutY="729.0" text="Do have an account?" textFill="#1a0c9e">
+      <Label layoutX="436.0" layoutY="635.0" text="Do have an account?" textFill="#1a0c9e">
          <font>
             <Font name="System Italic" size="18.0" />
          </font>
       </Label>
-      <Hyperlink fx:id="linkLogin" layoutX="214.0" layoutY="725.0" onAction="#linkLoginOnAction" text="Login Here" textFill="#040951">
+      <Hyperlink fx:id="linkLogin" layoutX="636.0" layoutY="631.0" onAction="#linkLoginOnAction" text="Login Here" textFill="#040951">
          <font>
             <Font name="System Italic" size="18.0" />
          </font></Hyperlink>
-      <ImageView fitHeight="376.0" fitWidth="674.0" layoutX="668.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../asserts.icon/OrderPlasmentBackground.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="500.0" fitWidth="777.0" layoutX="555.0" layoutY="370.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../asserts.icon/ItemBackground.png" />
-         </image>
-      </ImageView>
     </children>
 </AnchorPane>

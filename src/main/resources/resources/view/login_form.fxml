@@ -19,7 +19,7 @@
                 <Image url="@../asserts.icon/OrderPlasmentBackground.png" />
             </image>
         </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f7f9fc" height="595.0" layoutX="196.0" layoutY="165.0" opacity="0.6" stroke="BLACK" strokeType="INSIDE" width="963.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f7f9fc" height="595.0" layoutX="196.0" layoutY="161.0" opacity="0.6" stroke="BLACK" strokeType="INSIDE" width="963.0" />
         <Label layoutX="45.0" layoutY="41.0" text="User Log On" textFill="#f7fafc">
             <font>
                 <Font name="System Bold Italic" size="72.0" />

@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -17,6 +18,8 @@ import javafx.util.Duration;
 import java.io.IOException;
 
 public class DashboardFormController {
+    @FXML
+    private BarChart<?, ?> BarChartOrderDetails;
 
     @FXML
     private AnchorPane SpecialPane;
@@ -45,7 +48,10 @@ public class DashboardFormController {
     @FXML
     private JFXButton btnSupplierDetails;
 
+    @FXML
+    private AnchorPane rootNode;
 
+    @FXML
     private void initialize() {
         addButtonHoverEffect(btnCustomer);
         addButtonHoverEffect(btnEmployee);
@@ -54,6 +60,7 @@ public class DashboardFormController {
         addButtonHoverEffect(btnSignOut);
         addButtonHoverEffect(btnStock);
         addButtonHoverEffect(btnSupplier);
+        addButtonHoverEffect(btnSupplierDetails);
     }
 
     private void addButtonHoverEffect(Button button) {
@@ -73,33 +80,33 @@ public class DashboardFormController {
     @FXML
     void btnCustomerOnAction(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/customer_form.fxml"));
-        Parent rootNode = loader.load();
+        Parent root = loader.load();
         SpecialPane.getChildren().clear();
-        SpecialPane.getChildren().add(rootNode);
+        SpecialPane.getChildren().add(root);
     }
 
     @FXML
     void btnEmployeeOnAction(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/employee_form.fxml"));
-        Parent rootNode = loader.load();
+        Parent root = loader.load();
         SpecialPane.getChildren().clear();
-        SpecialPane.getChildren().add(rootNode);
+        SpecialPane.getChildren().add(root);
     }
 
     @FXML
     void btnItemsOnAction(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/item_form.fxml"));
-        Parent rootNode = loader.load();
+        Parent root = loader.load();
         SpecialPane.getChildren().clear();
-        SpecialPane.getChildren().add(rootNode);
+        SpecialPane.getChildren().add(root);
     }
 
     @FXML
     void btnPlaceOrderOnAction(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/orderPlacement_form.fxml"));
-        Parent rootNode = loader.load();
+        Parent root = loader.load();
         SpecialPane.getChildren().clear();
-        SpecialPane.getChildren().add(rootNode);
+        SpecialPane.getChildren().add(root);
     }
 
     @FXML
@@ -117,23 +124,23 @@ public class DashboardFormController {
     @FXML
     void btnStockOnAction(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/stock_form.fxml"));
-        Parent rootNode = loader.load();
+        Parent root= loader.load();
         SpecialPane.getChildren().clear();
-        SpecialPane.getChildren().add(rootNode);
+        SpecialPane.getChildren().add(root);
     }
 
     @FXML
     void btnSupplierOAction(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/supplier_form.fxml"));
-        Parent rootNode = loader.load();
+        Parent root = loader.load();
         SpecialPane.getChildren().clear();
-        SpecialPane.getChildren().add(rootNode);
+        SpecialPane.getChildren().add(root);
     }
 
     public void btnSupplierDetailsOAction(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/SupplierDetails_form.fxml"));
-        Parent rootNode = loader.load();
+        Parent root = loader.load();
         SpecialPane.getChildren().clear();
-        SpecialPane.getChildren().add(rootNode);
+        SpecialPane.getChildren().add(root);
     }
 }

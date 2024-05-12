@@ -15,7 +15,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import lk.ijse.gdse.Util.Regex;
 import lk.ijse.gdse.model.Employee;
-import lk.ijse.gdse.repository.CustomerRepo;
 import lk.ijse.gdse.repository.EmployeeRepo;
 
 import java.io.IOException;

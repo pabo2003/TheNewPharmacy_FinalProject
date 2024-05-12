@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class Launcher extends Application {
     public static void main(String[] args) {
@@ -15,7 +16,7 @@ public class Launcher extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/view/login_form.fxml")));
+            Scene scene = new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/resources/view/dashboard_form.fxml"))));
             stage.setScene(scene);
             stage.setTitle("Login Form");
             stage.centerOnScreen();
