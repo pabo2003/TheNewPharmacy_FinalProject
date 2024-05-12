@@ -19,6 +19,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.gdse.Util.Regex;
 import lk.ijse.gdse.model.Supplier;
+import lk.ijse.gdse.repository.CustomerRepo;
 import lk.ijse.gdse.repository.SupplierRepo;
 
 import java.io.IOException;
@@ -97,6 +98,7 @@ public class SupplierFormController {
     public void initialize(){
         setCellValueFactory();
         loadAllSuppliers();
+        getCurrentCustomerId();
 
         txtId.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
@@ -132,6 +134,25 @@ public class SupplierFormController {
 
             }
         });
+    }
+
+    private void getCurrentCustomerId() {
+        try {
+            String currentId = SupplierRepo.getCurrentId();
+            String nextOrderId = generateNextOrderId(currentId);
+            txtId.setText(nextOrderId);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String generateNextOrderId(String currentId) {
+        if (currentId != null && currentId.startsWith("Su")) {
+            int idNum = Integer.parseInt(currentId.substring(3)) + 1;
+            return "Su" + String.format("%03d", idNum);
+        }
+        return "Su001";
     }
 
     private void loadAllSuppliers() {

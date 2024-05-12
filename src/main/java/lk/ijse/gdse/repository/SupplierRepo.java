@@ -106,4 +106,16 @@ public class SupplierRepo {
     }
 
 
+    public static String getCurrentId() throws SQLException {
+        String sql = "SELECT supplierId FROM supplier ORDER BY supplierId DESC LIMIT 1";
+        PreparedStatement pstm = DbConnection.getInstance().getConnection()
+                .prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+        if(resultSet.next()) {
+            String customerId = resultSet.getString(1);
+            return customerId;
+        }
+        return null;
+    }
 }

@@ -125,4 +125,17 @@ public class ItemRepo {
 
         return pstm.executeUpdate() > 0;
     }
+
+    public static String getCurrentId() throws SQLException {
+        String sql = "SELECT employeeId FROM Employee ORDER BY employeeId DESC LIMIT 1";
+        PreparedStatement pstm = DbConnection.getInstance().getConnection()
+                .prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+        if(resultSet.next()) {
+            String employeeId = resultSet.getString(1);
+            return employeeId;
+        }
+        return null;
+    }
 }

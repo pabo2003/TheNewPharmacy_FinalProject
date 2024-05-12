@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import lk.ijse.gdse.Util.Regex;
 import lk.ijse.gdse.model.Item;
 import lk.ijse.gdse.model.Stock;
+import lk.ijse.gdse.repository.CustomerRepo;
 import lk.ijse.gdse.repository.ItemRepo;
 import lk.ijse.gdse.repository.StockRepo;
 
@@ -82,6 +83,7 @@ public class ItemFormController {
         setCellValueFactory();
         loadAllItems();
         getStockIds();
+        getCurrentItemId();
         tblItem.setItems(FXCollections.observableArrayList()); 
         loadAllItems();
         txtCode.setOnKeyPressed(event -> {
@@ -113,6 +115,24 @@ public class ItemFormController {
         });
     }
 
+    private void getCurrentItemId() {
+        try {
+            String currentId = ItemRepo.getCurrentId();
+            String nextOrderId = generateNextOrderId(currentId);
+            txtCode.setText(nextOrderId);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String generateNextOrderId(String currentId) {
+        if (currentId != null && currentId.startsWith("C")) {
+            int idNum = Integer.parseInt(currentId.substring(3)) + 1;
+            return "C" + String.format("%03d", idNum);
+        }
+        return "C001";
+    }
     private void setCellValueFactory() {
         colCode.setCellValueFactory(new PropertyValueFactory<>("itemId"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
