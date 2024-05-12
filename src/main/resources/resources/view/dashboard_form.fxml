@@ -49,7 +49,7 @@
                   <Image url="@../asserts.icon/RegistrationBackground.png" />
                </image>
             </ImageView>
-            <BarChart fx:id="BarChartOrderDetails" layoutX="8.0" layoutY="53.0" prefHeight="552.0" prefWidth="1097.0" title="Ordder Details">
+            <BarChart fx:id="BarChartOrderDetails" layoutX="8.0" layoutY="53.0" prefHeight="552.0" prefWidth="1097.0" title="Order Details">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>

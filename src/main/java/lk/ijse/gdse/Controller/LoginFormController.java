@@ -93,7 +93,7 @@ public class LoginFormController {
     }
 
     private void navigateToTheDashboard() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/dashboard_form.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/view/dashboard_form.fxml"));
         Parent rootNode = loader.load();
 
         Scene scene = new Scene(rootNode);
@@ -107,7 +107,7 @@ public class LoginFormController {
     }
 
     public void linkRegisterOnAction(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/registration_form.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/view/registration_form.fxml"));
         Parent rootNode = loader.load();
 
         Scene scene = new Scene(rootNode);

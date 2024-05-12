@@ -63,6 +63,7 @@ public class DashboardFormController {
         addButtonHoverEffect(btnSupplierDetails);
     }
 
+    @FXML
     private void addButtonHoverEffect(Button button) {
         ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(100), button);
         button.setOnMouseEntered((MouseEvent event) -> {
@@ -79,75 +80,103 @@ public class DashboardFormController {
 
     @FXML
     void btnCustomerOnAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("resources/view/customer_form.fxml"));
-        Parent root = loader.load();
-        SpecialPane.getChildren().clear();
-        SpecialPane.getChildren().add(root);
-
-        /*void btnCustomerOnAction(ActionEvent event) throws IOException {
+        try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/view/customer_form.fxml"));
             Parent root = loader.load();
             SpecialPane.getChildren().clear();
             SpecialPane.getChildren().add(root);
-        }*/
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void btnEmployeeOnAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("resources/view/employee_form.fxml"));
-        Parent root = loader.load();
-        SpecialPane.getChildren().clear();
-        SpecialPane.getChildren().add(root);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/view/employee_form.fxml"));
+            Parent root = loader.load();
+            SpecialPane.getChildren().clear();
+            SpecialPane.getChildren().add(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void btnItemsOnAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("resources/view/item_form.fxml"));
-        Parent root = loader.load();
-        SpecialPane.getChildren().clear();
-        SpecialPane.getChildren().add(root);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/view/item_form.fxml"));
+            Parent root = loader.load();
+            SpecialPane.getChildren().clear();
+            SpecialPane.getChildren().add(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void btnPlaceOrderOnAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("resources/view/orderPlacement_form.fxml"));
-        Parent root = loader.load();
-        SpecialPane.getChildren().clear();
-        SpecialPane.getChildren().add(root);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/view/orderPlacement_form.fxml"));
+            Parent root = loader.load();
+            SpecialPane.getChildren().clear();
+            SpecialPane.getChildren().add(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
-    void btnSignOutOnAction(ActionEvent event) throws IOException {
-        Button btn = (Button) event.getSource();
-        Stage stage = (Stage) btn.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("resources/view/login_form.fxml"));
-        Parent rootNode = loader.load();
-        Scene scene = new Scene(rootNode);
-        stage.setScene(scene);
+    void btnSignOutOnAction(ActionEvent event) {
+        try {
+            Button btn = (Button) event.getSource();
+            Stage stage = (Stage) btn.getScene().getWindow();
 
-        stage.show();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/view/login_form.fxml"));
+            Parent rootNode = loader.load();
+
+            Scene scene = new Scene(rootNode);
+            stage.setScene(scene);
+
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 
     @FXML
     void btnStockOnAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("resources/view/stock_form.fxml"));
-        Parent root= loader.load();
-        SpecialPane.getChildren().clear();
-        SpecialPane.getChildren().add(root);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/view/stock_form.fxml"));
+            Parent root = loader.load();
+            SpecialPane.getChildren().clear();
+            SpecialPane.getChildren().add(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void btnSupplierOAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("resources/view/supplier_form.fxml"));
-        Parent root = loader.load();
-        SpecialPane.getChildren().clear();
-        SpecialPane.getChildren().add(root);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/view/supplier_form.fxml"));
+            Parent root = loader.load();
+            SpecialPane.getChildren().clear();
+            SpecialPane.getChildren().add(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void btnSupplierDetailsOAction(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("resources/view/SupplierDetails_form.fxml"));
-        Parent root = loader.load();
-        SpecialPane.getChildren().clear();
-        SpecialPane.getChildren().add(root);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/view/SupplierDetails_form.fxml"));
+            Parent root = loader.load();
+            SpecialPane.getChildren().clear();
+            SpecialPane.getChildren().add(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
