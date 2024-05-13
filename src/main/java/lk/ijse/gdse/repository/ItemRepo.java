@@ -127,7 +127,7 @@ public class ItemRepo {
     }
 
     public static String getCurrentId() throws SQLException {
-        String sql = "SELECT employeeId FROM Employee ORDER BY employeeId DESC LIMIT 1";
+        String sql = "SELECT itemId FROM item ORDER BY itemId DESC LIMIT 1";
         PreparedStatement pstm = DbConnection.getInstance().getConnection()
                 .prepareStatement(sql);
 

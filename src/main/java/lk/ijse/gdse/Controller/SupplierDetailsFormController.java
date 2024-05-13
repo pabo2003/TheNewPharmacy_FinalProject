@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -80,7 +81,7 @@ public class SupplierDetailsFormController {
         setCellValueFactory();
         applyButtonAnimations();
         applyLabelAnimations();
-        loadAllSupplierDetails(); // You might want to load existing supplier details on initialization.
+        loadAllSupplierDetails();
     }
 
     private void setCellValueFactory() {
@@ -136,13 +137,10 @@ public class SupplierDetailsFormController {
 
         try {
             List<String> idList = StockRepo.getId();
-
             for(String id : idList) {
                 obList.add(id);
             }
-
             comStockId.setItems(obList);
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -182,6 +180,14 @@ public class SupplierDetailsFormController {
         }
     }
 
+    @FXML
+    void btnAddSupplierOnAction(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("resources/view/supplier_form.fxml"));
+        Parent rootNode = loader.load();
+        root.getChildren().clear();
+        root.getChildren().add(rootNode);
+    }
+
     private void setDate() {
         LocalDate now = LocalDate.now();
         lblDate.setText(String.valueOf(now));
@@ -213,35 +219,21 @@ public class SupplierDetailsFormController {
     }
 
     @FXML
-    void btnAddSupplierOnAction(ActionEvent event) {
-        ObservableList<SupplierDetails> obList = FXCollections.observableArrayList();
-        try {
-            List<SupplierDetails> supplierDetailsList = SupplierDetailsRepo.getAll();
-            for (SupplierDetails supplierDetails : supplierDetailsList) {
-                SupplierDetails supplierDetails1 = new SupplierDetails();
-                supplierDetails1.setStockId(supplierDetails.getStockId());
-                supplierDetails1.setSupplierId(supplierDetails.getSupplierId());
-                supplierDetails1.setDate(supplierDetails.getDate());
-                obList.add(supplierDetails1);
-            }
-            tblSupplierDetails.setItems(obList);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @FXML
-    void btnClearOnAction(ActionEvent event) {
+    void btnClearOnAction(ActionEvent event){
         clearFields();
     }
 
     @FXML
-    void btnDashBoardOnAction(ActionEvent event) throws IOException {
-        AnchorPane rootnode = FXMLLoader.load(getClass().getResource("/view/dashboard_form.fxml"));
-        Stage stage = (Stage) root.getScene().getWindow();
-        stage.setScene(new Scene(rootnode));
-        stage.setTitle("Dashboard Form");
-        stage.centerOnScreen();
+    void btnDashBoardOnAction(ActionEvent event) throws IOException{
+        try {
+            AnchorPane rootNode = FXMLLoader.load(getClass().getResource("/resources/view/dashboard_form.fxml"));
+            Stage stage = (Stage) root.getScene().getWindow();
+            stage.setScene(new Scene(rootNode));
+            stage.setTitle("Dashboard Form");
+            stage.centerOnScreen();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -270,5 +262,12 @@ public class SupplierDetailsFormController {
         comStockId.setValue(null);
         comSupplierId.setValue(null);
         lblDate.setText("");
+    }
+
+    public void btnAddStockOnAction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("resources/view/stock_form.fxml"));
+        Parent rootNode = loader.load();
+        root.getChildren().clear();
+        root.getChildren().add(rootNode);
     }
 }

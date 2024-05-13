@@ -302,12 +302,16 @@ public class OrderPlacementFormController {
     }
 
     @FXML
-    void btnDashBoardOnAction(ActionEvent event) throws IOException {
-        AnchorPane rootnode = FXMLLoader.load(getClass().getResource("/view/dashboard_form.fxml"));
-        Stage stage = (Stage) root.getScene().getWindow();
-        stage.setScene(new Scene(rootnode));
-        stage.setTitle("Dashboard Form");
-        stage.centerOnScreen();
+     void btnDashBoardOnAction(ActionEvent event) {
+        try {
+            AnchorPane rootNode = FXMLLoader.load(getClass().getResource("/resources/view/dashboard_form.fxml"));
+            Stage stage = (Stage) root.getScene().getWindow();
+            stage.setScene(new Scene(rootNode));
+            stage.setTitle("Dashboard Form");
+            stage.centerOnScreen();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -405,7 +409,7 @@ public class OrderPlacementFormController {
     }
     @FXML
     void comEmployeeTelOnAction(ActionEvent event) {
-        String tel = (String) comEmployeeTel.getValue();
+        String tel = comEmployeeTel.getValue();
         try {
             Employee employee = EmployeeRepo.searchByTel(tel);
 
@@ -434,14 +438,18 @@ public class OrderPlacementFormController {
         try {
             Item item = ItemRepo.searchById(id);
 
-            lblItemDescription.setText(item.getDescription());
-            lblUnitPrice.setText(String.valueOf(item.getUnitPrice()));
-            lblQty.setText(String.valueOf(item.getQtyOnHand()));
-
+            if (item != null) {
+                lblItemDescription.setText(item.getDescription());
+                lblUnitPrice.setText(String.valueOf(item.getUnitPrice()));
+                lblQty.setText(String.valueOf(item.getQtyOnHand()));
+            } else {
+                System.out.println("Item with ID " + id + " not found.");
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
     private void showAlert(Alert.AlertType alertType, String message) {
         Alert alert = new Alert(alertType);
         alert.setContentText(message);
@@ -449,19 +457,29 @@ public class OrderPlacementFormController {
     }
 
     public void btnAddEmployeeOnAction(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/employee_form.fxml"));
-        Parent rootNode = loader.load();
-        root.getChildren().clear();
-        root.getChildren().add(rootNode);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/view/employee_form.fxml"));
+            Parent rootNode = loader.load();
+            root.getChildren().clear();
+            root.getChildren().add(rootNode);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
-    void btnAddCustomerOnAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/customer_form.fxml"));
-        Parent rootNode = loader.load();
-        root.getChildren().clear();
-        root.getChildren().add(rootNode);
+    void btnAddCustomerOnAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/view/customer_form.fxml"));
+            Parent rootNode = loader.load();
+            root.getChildren().clear();
+            root.getChildren().add(rootNode);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+
 
     public void btnPrintBillOnAction(ActionEvent actionEvent) throws JRException, SQLException {
         JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/Report/PlaceOrder.jrxml");

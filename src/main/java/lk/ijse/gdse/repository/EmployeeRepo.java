@@ -72,23 +72,22 @@ public class EmployeeRepo {
     }
 
     public static Employee searchByTel(String tel) throws SQLException {
-        String sql = "SELECT*FROM Employee WHERE tel = ?";
+        String sql = "SELECT * FROM Employee WHERE tel = ?";
 
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
-        pstm.setObject(1,tel);
+        pstm.setString(1, tel);
 
         ResultSet resultSet = pstm.executeQuery();
         if (resultSet.next()) {
-            String tel1 = resultSet.getString(1);
-            String employeeId = resultSet.getString(2);
-            String name = resultSet.getString(3);
-            String address = resultSet.getString(4);
-            String nicNo = resultSet.getString(5);
-            double salary = resultSet.getDouble(6);
+            String tel1 = resultSet.getString("tel");
+            String employeeId = resultSet.getString("employeeId");
+            String name = resultSet.getString("name");
+            String address = resultSet.getString("address");
+            String nicNo = resultSet.getString("NICNo");
+            double salary = resultSet.getDouble("salary");
 
-
-            Employee employee = new Employee(employeeId, name, address, nicNo, tel1, salary);
+            Employee employee = new Employee(employeeId, name, nicNo, address, tel1, salary);
             return employee;
         }
         return null;

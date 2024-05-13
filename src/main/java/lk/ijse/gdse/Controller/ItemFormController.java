@@ -118,7 +118,7 @@ public class ItemFormController {
     private void getCurrentItemId() {
         try {
             String currentId = ItemRepo.getCurrentId();
-            String nextOrderId = generateNextOrderId(currentId);
+            String nextOrderId = generateNextItemId(currentId);
             txtCode.setText(nextOrderId);
 
         } catch (SQLException e) {
@@ -126,13 +126,14 @@ public class ItemFormController {
         }
     }
 
-    private String generateNextOrderId(String currentId) {
-        if (currentId != null && currentId.startsWith("C")) {
+    private String generateNextItemId(String currentId) {
+        if (currentId != null && currentId.startsWith("I")) {
             int idNum = Integer.parseInt(currentId.substring(3)) + 1;
-            return "C" + String.format("%03d", idNum);
+            return "I" + String.format("%03d", idNum);
         }
-        return "C001";
+        return "I001";
     }
+
     private void setCellValueFactory() {
         colCode.setCellValueFactory(new PropertyValueFactory<>("itemId"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -159,11 +160,15 @@ public class ItemFormController {
 
     @FXML
     void btnDashboardOnAction(ActionEvent event) throws IOException {
-        AnchorPane rootnode = FXMLLoader.load(getClass().getResource("/view/dashboard_form.fxml"));
-        Stage stage = (Stage) root.getScene().getWindow();
-        stage.setScene(new Scene(rootnode));
-        stage.setTitle("Dashboard Form");
-        stage.centerOnScreen();
+        try {
+            AnchorPane rootNode = FXMLLoader.load(getClass().getResource("/resources/view/dashboard_form.fxml"));
+            Stage stage = (Stage) root.getScene().getWindow();
+            stage.setScene(new Scene(rootNode));
+            stage.setTitle("Dashboard Form");
+            stage.centerOnScreen();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

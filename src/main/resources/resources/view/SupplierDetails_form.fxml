@@ -61,7 +61,7 @@
             </graphic>
         </JFXButton>
         <Label fx:id="lblDate" layoutX="891.0" layoutY="29.0" prefHeight="21.0" prefWidth="139.0" />
-        <ComboBox fx:id="comSupplierId" layoutX="165.0" layoutY="140.0" onAction="#comSupplierIdOnActiion" prefHeight="21.0" prefWidth="180.0" promptText="Select Supplier Id" style="-fx-background-color: transparent; -fx-border-color: #122620; -fx-border-width: 0px 0px 2px 0px;" />
+        <ComboBox fx:id="comSupplierId" layoutX="165.0" layoutY="140.0" onAction="#comSupplierIdOnAction" prefHeight="21.0" prefWidth="180.0" promptText="Select Supplier Id" style="-fx-background-color: transparent; -fx-border-color: #122620; -fx-border-width: 0px 0px 2px 0px;" />
         <Label fx:id="lblStockDescription" layoutX="743.0" layoutY="180.0" prefHeight="21.0" prefWidth="358.0" />
         <Label layoutX="606.0" layoutY="180.0" text="Description :" textFill="#363232">
             <font>

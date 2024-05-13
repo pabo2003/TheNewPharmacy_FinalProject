@@ -148,11 +148,11 @@ public class SupplierFormController {
     }
 
     private String generateNextOrderId(String currentId) {
-        if (currentId != null && currentId.startsWith("Su")) {
+        if (currentId != null && currentId.startsWith("S")) {
             int idNum = Integer.parseInt(currentId.substring(3)) + 1;
-            return "Su" + String.format("%03d", idNum);
+            return "S" + String.format("%03d", idNum);
         }
-        return "Su001";
+        return "S001";
     }
 
     private void loadAllSuppliers() {
@@ -198,12 +198,15 @@ public class SupplierFormController {
 
     @FXML
     void btnDashBoardOnAction(ActionEvent event) throws IOException {
-        AnchorPane rootnode = FXMLLoader.load(getClass().getResource("/view/dashboard_form.fxml"));
-        Stage stage = (Stage) root.getScene().getWindow();
-
-        stage.setScene(new Scene(rootnode));
-        stage.setTitle("Dashboard Form");
-        stage.centerOnScreen();
+        try {
+            AnchorPane rootNode = FXMLLoader.load(getClass().getResource("/resources/view/dashboard_form.fxml"));
+            Stage stage = (Stage) root.getScene().getWindow();
+            stage.setScene(new Scene(rootNode));
+            stage.setTitle("Dashboard Form");
+            stage.centerOnScreen();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

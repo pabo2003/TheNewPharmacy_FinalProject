@@ -97,4 +97,17 @@ public class StockRepo {
         }
         return stockList;
     }
+
+    public static String getCurrentId() throws SQLException {
+        String sql = "SELECT stockId FROM stock ORDER BY stockId DESC LIMIT 1";
+        PreparedStatement pstm = DbConnection.getInstance().getConnection()
+                .prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+        if(resultSet.next()) {
+            String employeeId = resultSet.getString(1);
+            return employeeId;
+        }
+        return null;
+    }
 }

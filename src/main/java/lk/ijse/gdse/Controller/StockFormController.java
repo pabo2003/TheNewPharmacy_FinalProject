@@ -18,6 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.gdse.Util.Regex;
 import lk.ijse.gdse.model.Stock;
+import lk.ijse.gdse.repository.ItemRepo;
 import lk.ijse.gdse.repository.StockRepo;
 
 import java.io.IOException;
@@ -82,6 +83,7 @@ public class StockFormController {
     public void initialize(){
         setCellValueFactory();
         loadAllStock();
+        getCurrentStockId();
 
         txtId.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
@@ -105,6 +107,25 @@ public class StockFormController {
 
 
 
+    }
+
+    private void getCurrentStockId() {
+        try {
+            String currentId = StockRepo.getCurrentId();
+            String nextOrderId = generateNextStockId(currentId);
+            txtId.setText(nextOrderId);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String generateNextStockId(String currentId) {
+        if (currentId != null && currentId.startsWith("S")) {
+            int idNum = Integer.parseInt(currentId.substring(3)) + 1;
+            return "S" + String.format("%03d", idNum);
+        }
+        return "S001";
     }
 
     private void loadAllStock() {
@@ -138,12 +159,15 @@ public class StockFormController {
 
     @FXML
     void btnDashboardOnAction(ActionEvent event) throws IOException {
-        AnchorPane rootnode = FXMLLoader.load(getClass().getResource("/view/dashboard_form.fxml"));
-        Stage stage = (Stage) root.getScene().getWindow();
-
-        stage.setScene(new Scene(rootnode));
-        stage.setTitle("Dashboard Form");
-        stage.centerOnScreen();
+        try {
+            AnchorPane rootNode = FXMLLoader.load(getClass().getResource("/resources/view/dashboard_form.fxml"));
+            Stage stage = (Stage) root.getScene().getWindow();
+            stage.setScene(new Scene(rootNode));
+            stage.setTitle("Dashboard Form");
+            stage.centerOnScreen();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

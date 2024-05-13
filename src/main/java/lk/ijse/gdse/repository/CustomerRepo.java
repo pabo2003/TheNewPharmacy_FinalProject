@@ -69,23 +69,23 @@ public class CustomerRepo {
     }
 
     public static Customer searchByTel(String tel) throws SQLException {
-        String sql = "SELECT*FROM customer WHERE tel = ?";
+        String sql = "SELECT * FROM customer WHERE tel = ?";
 
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
-        pstm.setObject(1,tel);
+        pstm.setString(1, tel);
 
         ResultSet resultSet = pstm.executeQuery();
         if (resultSet.next()) {
-            String cuId = resultSet.getString(1);
-            String name = resultSet.getString(2);
-            String nicNo = resultSet.getString(3);
-            String address = resultSet.getString(4);
-            String tel1 = resultSet.getString(5);
+            String cuId = resultSet.getString("cuId");
+            String name = resultSet.getString("name");
+            String nicNo = resultSet.getString("nicNo");
+            String address = resultSet.getString("address");
+            String tel1 = resultSet.getString("tel");
 
-            Customer customer = new Customer(cuId, name, nicNo, address, tel);
+            Customer customer = new Customer(cuId, name, nicNo, address, tel1);
 
-        return customer;
+            return customer;
         }
         return null;
     }

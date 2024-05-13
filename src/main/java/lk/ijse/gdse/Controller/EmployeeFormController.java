@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.gdse.Util.Regex;
 import lk.ijse.gdse.model.Employee;
@@ -57,7 +58,8 @@ public class EmployeeFormController {
     @FXML
     private TableColumn<?, ?> colTel;
 
-
+    @FXML
+    private AnchorPane root;
 
     @FXML
     private TableView<Employee> tblEmployee;
@@ -214,15 +216,15 @@ public class EmployeeFormController {
     }
 
     public void btnDashBoardOnAction(ActionEvent actionEvent) throws IOException {
-        Button btn = (Button) actionEvent.getSource();
-        Stage stage = (Stage) btn.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/dashboard_form.fxml"));
-        Parent rootNode = loader.load();
-
-        Scene scene = new Scene(rootNode);
-        stage.setScene(scene);
-
-        stage.show();
+        try {
+            AnchorPane rootNode = FXMLLoader.load(getClass().getResource("/resources/view/dashboard_form.fxml"));
+            Stage stage = (Stage) root.getScene().getWindow();
+            stage.setScene(new Scene(rootNode));
+            stage.setTitle("Dashboard Form");
+            stage.centerOnScreen();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void btnSaveOnAction(ActionEvent actionEvent) {
