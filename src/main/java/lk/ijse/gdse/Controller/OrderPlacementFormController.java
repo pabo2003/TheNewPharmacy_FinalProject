@@ -116,14 +116,22 @@ public class OrderPlacementFormController {
     @FXML
     private TextField txtQty;
 
+    @FXML
     private String payIdValue;
+
     private ObservableList<CartTm> obList = FXCollections.observableArrayList();
+
+    @FXML
+    private Label lblCustomerId;
+
+    @FXML
+    private Label lblEmployeeId;
     public void initialize() {
         setDate();
         getCurrentOrderId();
         getCurrentPayId();
-        getCustomerIds();
-        getEmployeeIds();
+        getCustomerTels();
+        getEmployeeTels();
         getItemIds();
         setCellValueFactory();
         applyButtonAnimations();
@@ -317,8 +325,8 @@ public class OrderPlacementFormController {
     @FXML
     void btnPlaceOrderOnAction(ActionEvent event) throws SQLException, JRException {
         String orderID = lblOrderId.getText();
-        String customerID = (String) comCustomerTel.getValue();
-        String EmployeeID = (String) comEmployeeTel.getValue();
+        String customerID = lblCustomerId.getText();
+        String EmployeeID = lblEmployeeId.getText();
         String paymentID = lblPayId.getText();
         String desc  = lblItemDescription.getText();
         Date date = Date.valueOf(LocalDate.now());
@@ -359,14 +367,14 @@ public class OrderPlacementFormController {
             new Alert(Alert.AlertType.WARNING, "Order Placed Unsuccessfully!").show();
         }
     }
-    private void getCustomerIds() {
+    private void getCustomerTels() {
         ObservableList<String> obList = FXCollections.observableArrayList();
 
         try {
-            List<String> idList = CustomerRepo.getTel();
+            List<String> telList = CustomerRepo.getTel();
 
-            for(String id : idList) {
-                obList.add(id);
+            for(String tel : telList) {
+                obList.add(tel);
             }
 
             comCustomerTel.setItems(obList);
@@ -375,14 +383,14 @@ public class OrderPlacementFormController {
             throw new RuntimeException(e);
         }
     }
-    private void getEmployeeIds() {
+    private void getEmployeeTels() {
         ObservableList<String> obList = FXCollections.observableArrayList();
 
         try {
-            List<String> idList = EmployeeRepo.getTel();
+            List<String> telList = EmployeeRepo.getTel();
 
-            for(String id : idList) {
-                obList.add(id);
+            for(String tel : telList) {
+                obList.add(tel);
             }
 
             comEmployeeTel.setItems(obList);
@@ -414,7 +422,7 @@ public class OrderPlacementFormController {
             Employee employee = EmployeeRepo.searchByTel(tel);
 
             lblEmployeeName.setText(employee.getName());
-
+            lblEmployeeId.setText(employee.getEmployeeId());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -427,7 +435,7 @@ public class OrderPlacementFormController {
             Customer customer = CustomerRepo.searchByTel(tel);
 
             lblCustomerName.setText(customer.getName());
-
+            lblCustomerId.setText(customer.getCuId());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -482,7 +490,7 @@ public class OrderPlacementFormController {
 
 
     public void btnPrintBillOnAction(ActionEvent actionEvent) throws JRException, SQLException {
-        JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/Report/PlaceOrder.jrxml");
+        JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/resources/Report/PlaceOrder.jrxml");
         JRDesignQuery jrDesignQuery = new JRDesignQuery();
         jrDesignQuery.setText("SELECT \n" +
                 "    o.orderId,\n" +
