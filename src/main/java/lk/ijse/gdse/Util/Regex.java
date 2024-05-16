@@ -50,13 +50,12 @@ public class Regex {
 
     public static boolean setTextColor(TextField location, javafx.scene.control.TextField textField) {
         if (Regex.isTextFieldValid(location, textField.getText())) {
-
             textField.setStyle("-fx-text-fill: Black; ");
+            return true;
         } else {
             textField.setStyle("-fx-text-fill: red; ");
 
             return false;
         }
-        return false;
     }
 }

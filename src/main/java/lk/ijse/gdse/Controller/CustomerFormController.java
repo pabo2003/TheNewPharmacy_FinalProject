@@ -161,7 +161,7 @@ public class CustomerFormController {
 
         Customer customer = new Customer(id,name,nicNo,address,tel);
 
-        try {
+        /*try {
             boolean isSaved = CustomerRepo.save(customer);
             if (id.isEmpty() || name.isEmpty() || nicNo.isEmpty() || address.isEmpty() || tel.isEmpty()) {
                 new Alert(Alert.AlertType.WARNING, "Please fill in all fields!").show();
@@ -171,6 +171,19 @@ public class CustomerFormController {
             if (isSaved) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Customer saved successfully!").show();
                 clearFields();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }*/
+        try {
+            if (isValied()) {
+                boolean isSaved = CustomerRepo.save(new Customer(id, name, nicNo, address, tel));
+                if (isSaved) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Customer saved successfully!").show();
+                    clearFields();
+                }
+            }else {
+                new Alert(Alert.AlertType.ERROR, "Details are not valid.").show();
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -238,6 +251,13 @@ public class CustomerFormController {
         }
     }
 
+    private boolean isValied() {
+        if (!Regex.setTextColor(lk.ijse.gdse.Util.TextField.ID,txtId)) return false;
+        if (!Regex.setTextColor(lk.ijse.gdse.Util.TextField.NAME,txtName)) return false;
+        if (!Regex.setTextColor(lk.ijse.gdse.Util.TextField.NIC,txtNICNo)) return false;
+        if (!Regex.setTextColor(lk.ijse.gdse.Util.TextField.TEL,txtTel)) return false;
+        return true;
+    }
 
     public void txtCustomerIDOnKeyReleased(KeyEvent keyEvent) {
         Regex.setTextColor(lk.ijse.gdse.Util.TextField.ID,txtId);

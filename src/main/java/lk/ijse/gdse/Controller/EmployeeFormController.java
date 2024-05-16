@@ -235,9 +235,9 @@ public class EmployeeFormController {
         String tel = txtTel.getText();
         double salary = Double.parseDouble(txtSalary.getText());
 
-        Employee employee = new Employee(id, name, nicNo, address, tel, salary);
+//        Employee employee = new Employee(id, name, nicNo, address, tel, salary);
 
-        try {
+        /*try {
             boolean isSaved = EmployeeRepo.save(employee);
             if (id.isEmpty() || name.isEmpty() || nicNo.isEmpty() || address.isEmpty() || tel.isEmpty() || txtSalary.getText().isEmpty()) {
                 new Alert(Alert.AlertType.WARNING, "Please fill in all fields!").show();
@@ -251,9 +251,23 @@ public class EmployeeFormController {
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }*/
+        try {
+            if (isValied()) {
+                boolean isSaved = EmployeeRepo.save(new Employee(id, name, nicNo, address, tel, salary));
+                if (isSaved) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Employee saved successfully!").show();
+                    clearFields();
+                }
+            }else {
+                new Alert(Alert.AlertType.ERROR, "Details are not valid.").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
         loadAllEmployee();
     }
+
 
     private void clearFields() {
         txtId.clear();
@@ -286,6 +300,14 @@ public class EmployeeFormController {
         clearFields();
     }
 
+    private boolean isValied() {
+        if (!Regex.setTextColor(lk.ijse.gdse.Util.TextField.ID,txtId)) return false;
+        if (!Regex.setTextColor(lk.ijse.gdse.Util.TextField.NAME,txtName)) return false;
+        if (!Regex.setTextColor(lk.ijse.gdse.Util.TextField.NIC,txtNICNo)) return false;
+        if (!Regex.setTextColor(lk.ijse.gdse.Util.TextField.TEL,txtTel)) return false;
+        if (!Regex.setTextColor(lk.ijse.gdse.Util.TextField.SALARY,txtSalary)) return false;
+        return true;
+    }
     public void txtEmployeeIDOnKeyReleased(KeyEvent keyEvent) {
         Regex.setTextColor(lk.ijse.gdse.Util.TextField.ID,txtId);
     }

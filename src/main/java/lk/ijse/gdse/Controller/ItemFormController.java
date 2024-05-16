@@ -193,13 +193,13 @@ public class ItemFormController {
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
-        String stockId = comStockId.getValue();
         String itemId = txtCode.getText();
         String description = txtDescription.getText();
-        double unitPrice = Double.parseDouble(txtUnitPrice.getText());
         int qtyOnHand = Integer.parseInt(txtQtyOnHand.getText());
+        double unitPrice = Double.parseDouble(txtUnitPrice.getText());
+        String stockId = comStockId.getValue();
 
-        Item item = new Item(itemId, description, unitPrice, qtyOnHand, stockId);
+        /*Item item = new Item(itemId, description, unitPrice, qtyOnHand, stockId);
         try {
             boolean isItemSaved = ItemRepo.save(item);
             if (isItemSaved) {
@@ -211,7 +211,25 @@ public class ItemFormController {
             }
         } catch (SQLException e) {
             showAlert(Alert.AlertType.ERROR, "Error occurred while saving Item: " + e.getMessage());
+        private String itemId;
+    private String description;
+    private double unitPrice;
+    private int QtyOnHand;
+    private String stockId;}*/
+        try {
+            if (isValied()) {
+                boolean isSaved = ItemRepo.save(new Item(itemId, description, unitPrice, qtyOnHand, stockId));
+                if (isSaved) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Item saved successfully!").show();
+                    clearFields();
+                }
+            }else {
+                new Alert(Alert.AlertType.ERROR, "Details are not valid.").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
+        loadAllItems();
     }
 
     @FXML
@@ -268,6 +286,12 @@ public class ItemFormController {
         Alert alert = new Alert(alertType);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public boolean isValied(){
+        if (!Regex.setTextColor(lk.ijse.gdse.Util.TextField.ID,txtCode)) return false;
+        if (!Regex.setTextColor(lk.ijse.gdse.Util.TextField.AMOUNT,txtUnitPrice)) return false;
+        return true;
     }
 
     public void txtItemIDOnKeyReleased(KeyEvent keyEvent) {

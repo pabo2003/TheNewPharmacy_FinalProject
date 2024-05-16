@@ -232,7 +232,7 @@ public class SupplierFormController {
         String address = txtAddress.getText();
         String tel = txtTel.getText();
 
-        Supplier supplier = new Supplier(id,name,description,address,tel);
+        /*Supplier supplier = new Supplier(id,name,description,address,tel);
 
         try {
             boolean isSaved = SupplierRepo.save(supplier);
@@ -244,6 +244,19 @@ public class SupplierFormController {
             if (isSaved) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Supplier saved successfully!").show();
                 clearFields();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }*/
+        try {
+            if (isValied()) {
+                boolean isSaved = SupplierRepo.save(new Supplier(id, name, description, address, tel));
+                if (isSaved) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Supplier saved successfully!").show();
+                    clearFields();
+                }
+            }else {
+                new Alert(Alert.AlertType.ERROR, "Details are not valid.").show();
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -271,6 +284,13 @@ public class SupplierFormController {
         }
         loadAllSuppliers();
         clearFields();
+    }
+
+    public boolean isValied(){
+        if (!Regex.setTextColor(lk.ijse.gdse.Util.TextField.ID,txtId)) return false;
+        if (!Regex.setTextColor(lk.ijse.gdse.Util.TextField.TEL,txtTel)) return false;
+        if (!Regex.setTextColor(lk.ijse.gdse.Util.TextField.NAME,txtName)) return false;
+        return true;
     }
 
     public void txtSupplierNameOnKeyReleased(KeyEvent keyEvent) {

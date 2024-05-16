@@ -191,7 +191,7 @@ public class StockFormController {
         String description = txtDescription.getText();
         String category = txtCategory.getText();
 
-        Stock stock = new Stock(id,description,category);
+        /*Stock stock = new Stock(id,description,category);
 
         try {
             boolean isSaved = StockRepo.save(stock);
@@ -203,6 +203,19 @@ public class StockFormController {
             if (isSaved) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Stock saved successfully!").show();
                 clearFields();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }*/
+        try {
+            if (isValied()) {
+                boolean isSaved = StockRepo.save(new Stock(id, description, category));
+                if (isSaved) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Stock saved successfully!").show();
+                    clearFields();
+                }
+            }else {
+                new Alert(Alert.AlertType.ERROR, "Details are not valid.").show();
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -234,6 +247,11 @@ public class StockFormController {
         }
         loadAllStock();
         clearFields();
+    }
+
+    public boolean isValied(){
+        if (!Regex.setTextColor(lk.ijse.gdse.Util.TextField.ID,txtId)) return false;
+        return true;
     }
 
     public void txtStockIDOnKeyReleased(KeyEvent keyEvent) {

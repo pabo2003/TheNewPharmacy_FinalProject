@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -87,18 +88,21 @@ public class RegistrationFormController {
         return pstm.executeUpdate() > 0;
     }
 
-    public void linkLoginOnAction(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/login_form.fxml"));
-        Parent root = loader.load();
+    public void linkLoginOnAction(ActionEvent event) throws IOException {
+        try {
+            Hyperlink link = (Hyperlink) event.getSource();
+            Stage stage = (Stage) link.getScene().getWindow();
 
-        Scene scene = new Scene(root);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/view/login_form.fxml"));
+            Parent rootNode = loader.load();
 
-        Stage stage = (Stage) this.root.getScene().getWindow();
-        stage.setScene(scene);
-        stage.centerOnScreen();
-        stage.setTitle("Login Form");
+            Scene scene = new Scene(rootNode);
+            stage.setScene(scene);
 
-        stage.show();
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void txtUserIdOnKeyReleased(KeyEvent keyEvent) {
