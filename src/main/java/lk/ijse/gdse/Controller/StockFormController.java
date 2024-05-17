@@ -191,22 +191,6 @@ public class StockFormController {
         String description = txtDescription.getText();
         String category = txtCategory.getText();
 
-        /*Stock stock = new Stock(id,description,category);
-
-        try {
-            boolean isSaved = StockRepo.save(stock);
-            if (id.isEmpty() || description.isEmpty() || category.isEmpty()) {
-                new Alert(Alert.AlertType.WARNING, "Please fill in all fields!").show();
-                return;
-            }
-
-            if (isSaved) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Stock saved successfully!").show();
-                clearFields();
-            }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-        }*/
         try {
             if (isValied()) {
                 boolean isSaved = StockRepo.save(new Stock(id, description, category));
@@ -217,6 +201,7 @@ public class StockFormController {
             }else {
                 new Alert(Alert.AlertType.ERROR, "Details are not valid.").show();
             }
+            getCurrentStockId();
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
@@ -224,7 +209,6 @@ public class StockFormController {
     }
 
     private void clearFields() {
-        txtId.clear();
         txtDescription.clear();
         txtCategory.clear();
     }

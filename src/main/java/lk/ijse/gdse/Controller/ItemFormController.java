@@ -199,23 +199,6 @@ public class ItemFormController {
         double unitPrice = Double.parseDouble(txtUnitPrice.getText());
         String stockId = comStockId.getValue();
 
-        /*Item item = new Item(itemId, description, unitPrice, qtyOnHand, stockId);
-        try {
-            boolean isItemSaved = ItemRepo.save(item);
-            if (isItemSaved) {
-                tblItem.getItems().add(item);
-                showAlert(Alert.AlertType.CONFIRMATION, "Item saved successfully!");
-                clearFields();
-            } else {
-                showAlert(Alert.AlertType.ERROR, "Failed to save Item!");
-            }
-        } catch (SQLException e) {
-            showAlert(Alert.AlertType.ERROR, "Error occurred while saving Item: " + e.getMessage());
-        private String itemId;
-    private String description;
-    private double unitPrice;
-    private int QtyOnHand;
-    private String stockId;}*/
         try {
             if (isValied()) {
                 boolean isSaved = ItemRepo.save(new Item(itemId, description, unitPrice, qtyOnHand, stockId));
@@ -226,6 +209,7 @@ public class ItemFormController {
             }else {
                 new Alert(Alert.AlertType.ERROR, "Details are not valid.").show();
             }
+            getCurrentItemId();
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
@@ -275,7 +259,6 @@ public class ItemFormController {
     }
 
     private void clearFields() {
-        txtCode.clear();
         txtDescription.clear();
         txtUnitPrice.clear();
         txtQtyOnHand.clear();

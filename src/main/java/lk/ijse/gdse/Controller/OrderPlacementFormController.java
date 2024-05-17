@@ -29,9 +29,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class OrderPlacementFormController {
 
@@ -491,38 +489,16 @@ public class OrderPlacementFormController {
 
     public void btnPrintBillOnAction(ActionEvent actionEvent) throws JRException, SQLException {
         JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/resources/Report/PlaceOrder.jrxml");
-        JRDesignQuery jrDesignQuery = new JRDesignQuery();
-        jrDesignQuery.setText("SELECT \n" +
-                "    o.orderId,\n" +
-                "    o.description AS order_description,\n" +
-                "    od.qty,\n" +
-                "    od.unitPrice,\n" +
-                "    i.description AS item_description,\n" +
-                "    c.name AS customer_name,\n" +
-                "    c.address AS customer_address,\n" +
-                "    p.method AS payment_method,\n" +
-                "    p.amount AS payment_amount,\n" +
-                "    p.date AS payment_date\n" +
-                "FROM \n" +
-                "    orders o\n" +
-                "JOIN \n" +
-                "    orderDetails od ON o.orderId = od.orderId\n" +
-                "JOIN \n" +
-                "    item i ON od.itemId = i.itemId\n" +
-                "JOIN \n" +
-                "    customer c ON o.cuId = c.cuId\n" +
-                "JOIN \n" +
-                "    payment p ON o.payId = p.payId\n" +
-                "WHERE \n" +
-                "    o.orderId = (SELECT MAX(orderId) FROM orders);\n");
-        jasperDesign.setQuery(jrDesignQuery);
-
         JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 
+        Map<String,Object> data = new HashMap<>();
+        data.put("OrderId",lblOrderId.getText());
+        data.put("NetTotal",lblAmount.getText());
 
         JasperPrint jasperPrint =
-                JasperFillManager.fillReport(jasperReport, null,DbConnection.getInstance().getConnection());
+                JasperFillManager.fillReport(jasperReport, data,DbConnection.getInstance().getConnection());
         JasperViewer.viewReport(jasperPrint,false);
+
 
     }
 }

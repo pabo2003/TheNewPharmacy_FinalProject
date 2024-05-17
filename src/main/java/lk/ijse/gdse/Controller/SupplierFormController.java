@@ -184,7 +184,6 @@ public class SupplierFormController {
     }
 
     private void clearFields() {
-        txtId.clear();
         txtName.clear();
         txtDescription.clear();
         txtAddress.clear();
@@ -232,22 +231,6 @@ public class SupplierFormController {
         String address = txtAddress.getText();
         String tel = txtTel.getText();
 
-        /*Supplier supplier = new Supplier(id,name,description,address,tel);
-
-        try {
-            boolean isSaved = SupplierRepo.save(supplier);
-            if (id.isEmpty() || name.isEmpty() || description.isEmpty() || address.isEmpty() || tel.isEmpty()) {
-                new Alert(Alert.AlertType.WARNING, "Please fill in all fields!").show();
-                return;
-            }
-
-            if (isSaved) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Supplier saved successfully!").show();
-                clearFields();
-            }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-        }*/
         try {
             if (isValied()) {
                 boolean isSaved = SupplierRepo.save(new Supplier(id, name, description, address, tel));
@@ -258,6 +241,7 @@ public class SupplierFormController {
             }else {
                 new Alert(Alert.AlertType.ERROR, "Details are not valid.").show();
             }
+            getCurrentCustomerId();
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }

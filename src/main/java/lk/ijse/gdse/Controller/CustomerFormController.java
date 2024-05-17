@@ -109,6 +109,7 @@ public class CustomerFormController {
         try {
             String currentId = CustomerRepo.getCurrentId();
             String nextOrderId = generateNextOrderId(currentId);
+            System.out.println(nextOrderId);
             txtId.setText(nextOrderId);
 
         } catch (SQLException e) {
@@ -159,22 +160,6 @@ public class CustomerFormController {
         String address = txtAddress.getText();
         String tel = txtTel.getText();
 
-        Customer customer = new Customer(id,name,nicNo,address,tel);
-
-        /*try {
-            boolean isSaved = CustomerRepo.save(customer);
-            if (id.isEmpty() || name.isEmpty() || nicNo.isEmpty() || address.isEmpty() || tel.isEmpty()) {
-                new Alert(Alert.AlertType.WARNING, "Please fill in all fields!").show();
-                return;
-            }
-
-            if (isSaved) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Customer saved successfully!").show();
-                clearFields();
-            }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-        }*/
         try {
             if (isValied()) {
                 boolean isSaved = CustomerRepo.save(new Customer(id, name, nicNo, address, tel));
@@ -185,6 +170,7 @@ public class CustomerFormController {
             }else {
                 new Alert(Alert.AlertType.ERROR, "Details are not valid.").show();
             }
+            getCurrentCustomerId();
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
@@ -193,7 +179,6 @@ public class CustomerFormController {
     }
 
     private void clearFields() {
-        txtId.clear();
         txtName.clear();
         txtNICNo.clear();
         txtAddress.clear();
@@ -233,6 +218,7 @@ public class CustomerFormController {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
         loadAllCustomers();
+        clearFields();
     }
 
     public void btnClearOnAction(ActionEvent actionEvent) {

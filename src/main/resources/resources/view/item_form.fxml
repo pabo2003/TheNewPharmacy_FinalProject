@@ -53,46 +53,61 @@
                 <Font name="System Bold Italic" size="18.0" />
             </font>
         </Label>
-        <JFXButton fx:id="btnSave" layoutX="31.0" layoutY="343.0" onAction="#btnSaveOnAction" prefHeight="35.0" prefWidth="222.0" style="-fx-background-color: #189AB4 #189AB4;" text="Save">
+        <JFXButton fx:id="btnSave" layoutX="31.0" layoutY="343.0" onAction="#btnSaveOnAction" prefHeight="35.0" prefWidth="222.0" style="-fx-background-color: #189AB4 #189AB4;" text="Save" textFill="#f2eeee">
          <graphic>
               <ImageView fitHeight="21.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                       <Image url="@../asserts.icon/save.png" />
                   </image>
               </ImageView>
-         </graphic></JFXButton>
-        <JFXButton fx:id="btnUpdate" layoutX="32.0" layoutY="414.0" onAction="#btnUpdateOnAction" prefHeight="35.0" prefWidth="222.0" style="-fx-background-color: #189AB4;" text="Update">
+         </graphic>
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></JFXButton>
+        <JFXButton fx:id="btnUpdate" layoutX="32.0" layoutY="414.0" onAction="#btnUpdateOnAction" prefHeight="35.0" prefWidth="222.0" style="-fx-background-color: #189AB4;" text="Update" textFill="#fcf7f7">
          <graphic>
               <ImageView fitHeight="21.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                       <Image url="@../asserts.icon/update.png" />
                   </image>
               </ImageView>
-         </graphic></JFXButton>
-        <JFXButton fx:id="btnDelete" layoutX="32.0" layoutY="485.0" onAction="#btnDeleteOnAction" prefHeight="35.0" prefWidth="222.0" style="-fx-background-color: #189AB4;" text="Delete">
+         </graphic>
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></JFXButton>
+        <JFXButton fx:id="btnDelete" layoutX="32.0" layoutY="485.0" onAction="#btnDeleteOnAction" prefHeight="35.0" prefWidth="222.0" style="-fx-background-color: #189AB4;" text="Delete" textFill="#f2ebeb">
          <graphic>
               <ImageView fitHeight="21.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                       <Image url="@../asserts.icon/Delete.png" />
                   </image>
               </ImageView>
-         </graphic></JFXButton>
-        <JFXButton fx:id="btnClear" layoutX="32.0" layoutY="551.0" onAction="#btnClearOnAction" prefHeight="35.0" prefWidth="222.0" style="-fx-background-color: #189AB4;" text="Clear">
+         </graphic>
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></JFXButton>
+        <JFXButton fx:id="btnClear" layoutX="32.0" layoutY="551.0" onAction="#btnClearOnAction" prefHeight="35.0" prefWidth="222.0" style="-fx-background-color: #189AB4;" text="Clear" textFill="#fcfafa">
          <graphic>
               <ImageView fitHeight="21.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                       <Image url="@../asserts.icon/clean.png" />
                   </image>
               </ImageView>
-         </graphic></JFXButton>
-        <JFXButton fx:id="btnDashboard" layoutX="31.0" layoutY="622.0" onAction="#btnDashboardOnAction" prefHeight="35.0" prefWidth="222.0" style="-fx-background-color: #189AB4;" text="Dashboard">
+         </graphic>
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></JFXButton>
+        <JFXButton fx:id="btnDashboard" layoutX="31.0" layoutY="622.0" onAction="#btnDashboardOnAction" prefHeight="35.0" prefWidth="222.0" style="-fx-background-color: #189AB4;" text="Dashboard" textFill="#fcfafa">
          <graphic>
               <ImageView fitHeight="21.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                       <Image url="@../asserts.icon/dashboard.png" />
                   </image>
               </ImageView>
-         </graphic></JFXButton>
+         </graphic>
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></JFXButton>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="20.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../asserts.icon/Item.png" />

@@ -235,23 +235,6 @@ public class EmployeeFormController {
         String tel = txtTel.getText();
         double salary = Double.parseDouble(txtSalary.getText());
 
-//        Employee employee = new Employee(id, name, nicNo, address, tel, salary);
-
-        /*try {
-            boolean isSaved = EmployeeRepo.save(employee);
-            if (id.isEmpty() || name.isEmpty() || nicNo.isEmpty() || address.isEmpty() || tel.isEmpty() || txtSalary.getText().isEmpty()) {
-                new Alert(Alert.AlertType.WARNING, "Please fill in all fields!").show();
-                return;
-            }
-
-
-            if (isSaved) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Employee saved successfully!").show();
-                clearFields();
-            }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-        }*/
         try {
             if (isValied()) {
                 boolean isSaved = EmployeeRepo.save(new Employee(id, name, nicNo, address, tel, salary));
@@ -262,6 +245,7 @@ public class EmployeeFormController {
             }else {
                 new Alert(Alert.AlertType.ERROR, "Details are not valid.").show();
             }
+            getCurrentEmployeeId();
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
@@ -270,7 +254,6 @@ public class EmployeeFormController {
 
 
     private void clearFields() {
-        txtId.clear();
         txtName.clear();
         txtNICNo.clear();
         txtAddress.clear();
